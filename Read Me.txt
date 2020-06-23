@@ -1,6 +1,18 @@
 Module 5
 --------
-Day 1:
-What is Node JS?
-Why we need to use Node Js?
+1. 
+//inicializon nje projekt te ri.
+	npm init || npm init -y 
+
+2. instalo nodemon si dev dependecy
+	npm i -D nodemon
+
+3. Shto tek package.json=> "dev": "nodemon ./src/server.js" ne vendin e script
+per te nisur me thjeshte programin:
+	npm start dev 
+
+3. intalo express
+npm i express
+
+
 

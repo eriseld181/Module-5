@@ -29,7 +29,7 @@ router.get("/", (request, response) => {
 
 // 2.
 router.get("/:id", (request, response) => { })
-
+const fileContentAsABuffer = fs.r
 // 3.
 router.post("/", (request, response) => { })
 

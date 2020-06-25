@@ -9,34 +9,71 @@
 const express = require("express") // third party module
 const fs = require("fs") // core module dedicated to file system interactions
 const path = require("path") // core module
+const uniqid = require("uniqid")
 
 const router = express.Router()
 
+const usersFilePath = path.join(__dirname, "users.json")
 // 1.
 router.get("/", (request, response) => {
-    // (request, response)=> is the handler for this specific route
 
-    // a) retrieve users list from a file on disk (we do not have a real database yet!)
+    const fileContentAsABuffer = fs.readFileSync(usersFilePath)
+    const fileContent = fileContentAsABuffer.toString()
 
-    const usersFilePath = path.join(__dirname, "users.json") // we composed the path on disk (avoid __dirname + "\\users.json")
-    const fileContentAsABuffer = fs.readFileSync(usersFilePath) // please read the file (we are getting a Buffer back)
-    console.log(fileContentAsABuffer)
-    const fileContent = fileContentAsABuffer.toString() // we need to translate the buffer into something human readable
-
-    // b) send the list as a json in the response body
-    response.send(JSON.parse(fileContent)) // JSON.parse converts strings into json format
+    response.send(JSON.parse(fileContent))
 })
 
 // 2.
-router.get("/:id", (request, response) => { })
-const fileContentAsABuffer = fs.r
+router.get("/:id", (request, response) => {
+    const fileContentAsABuffer = fs.readFileSync(usersFilePath)
+    const userArray = JSON.parse(fileContentAsABuffer.toString())
+
+    const user = userArray.filter((user) => user.id === request.params.id)
+
+    response.send(user)
+})
 // 3.
-router.post("/", (request, response) => { })
+router.post("/", (request, response) => {
+    console.log(request.body)
+    const newUser = { id: uniqid(), ...request.body }
+
+    const fileContentAsABuffer = fs.readFileSync(usersFilePath)
+    const usersArray = JSON.parse(fileContentAsABuffer.toString())
+
+    usersArray.push(newUser)
+
+    fs.writeFileSync(usersFilePath, JSON.stringify(usersArray))
+    response.status(201).send(newUser)
+})
 
 // 4.
-router.put("/:id", (request, response) => { })
+router.put("/:id", (request, response) => {
+    const fileContentAsABuffer = fs.readFileSync(usersFilePath)
+    const usersArray = JSON.parse(fileContentAsABuffer.toString())
+
+
+    const filterUsersArray = usersArray.filter((user) => user.id !== request.params.id)
+    fs.writeFileSync(usersFilePath, JSON.stringify(filterUsersArray))
+
+    const user = request.body
+    user.id = request.params.id
+
+    filterUsersArray.push(user)
+
+    fs.writeFileSync(usersFilePath, JSON.stringify(filterUsersArray))
+    response.send("OK")
+})
 
 // 5.
-router.delete("/:id", (request, response) => { })
+router.delete("/:id", (request, response) => {
+
+    const fileContentAsABuffer = fs.readFileSync(usersFilePath)
+    const usersArray = JSON.parse(fileContentAsABuffer.toString())
+
+    const filterUsersArray = usersArray.filter((user) => user.id !== request.params.id)
+    fs.writeFileSync(usersFilePath, JSON.stringify(filterUsersArray))
+
+    response.send(filterUsersArray)
+})
 
 module.exports = router

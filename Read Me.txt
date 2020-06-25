@@ -14,5 +14,14 @@ per te nisur me thjeshte programin:
 3. intalo express
 npm i express
 
+4. unique id generator
+	npm i uniqid
+5. 
+npm i express cors
+
+6.
+npm i dotenv
+
+
 
 

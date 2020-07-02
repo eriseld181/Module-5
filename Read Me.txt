@@ -5,23 +5,37 @@ Module 5
 	npm init || npm init -y 
 
 2. instalo nodemon si dev dependecy
-	npm i -D nodemon
-
-3. Shto tek package.json=> "dev": "nodemon ./src/server.js" ne vendin e script
-per te nisur me thjeshte programin:
-	npm start dev 
+	npm i -D nodemon || npm i -g nodemon
 
 3. intalo express
 npm i express
 
-4. unique id generator
+4. Shto tek package.json=> "dev": "nodemon ./src/server.js" ne vendin e script
+per te nisur me thjeshte programin:
+	npm start dev 
+
+5. unique id generator
 	npm i uniqid
-5. 
+6. 
 npm i express cors
 
-6.
+7.
 npm i dotenv
 
+8. it shows all the endpoint lists.
+
+	npm i express-list-endpoints
+
+9. 
+	npm i fs-extra
+
+10. 
+xml to json convertion;
+1. we need to install a package
+	 npm i xml-js
+
+2. 	
+	 npm i xmlbuilder
 
 
 

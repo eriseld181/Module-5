@@ -58,8 +58,6 @@ router.put("/:id", (req, res) => {
     newListOfStudents.push(student)
     fs.writeFileSync(studentPath, JSON.stringify(newListOfStudents))
     res.send("ok")
-
-
 })
 
 module.exports = router

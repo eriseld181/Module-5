@@ -1,0 +1,18 @@
+How to display a name using a query.name?
+
+What is user.hasOwnProperty?
+
+Can I check for title of movies??
+
+What is next?
+	-Next is a fuctions that tells the program go to the next middleware.
+How to get the Id from one JSON and use it in another file? example, to use the
+id of a movie for comments...
+
+What is the Difference between normal MiddleWare and errorMiddleWare?
+	Normal MiddleWare has only 3 parameters req, res, next
+	ErrorMiddleWare has 4 parameters err, req, res, next.
+	ErrorMiddleWare must be in the end of all executions, 
+	to catch all errors.
+
+
